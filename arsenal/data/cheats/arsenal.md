@@ -14,6 +14,11 @@
 >clear
 ```
 
+### Set domain global variable
+```
+>set domain=<domain>
+```
+
 ## Set commons global variable
 ```
 >set LHOST=<LHOST> LPORT=<LPORT> RHOST=<RHOST> RPORT=<RPORT>

