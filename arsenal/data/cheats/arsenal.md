@@ -19,9 +19,9 @@
 >set domain=<domain>
 ```
 
-## Set commons global variable
+## Set DC IP
 ```
->set LHOST=<LHOST> LPORT=<LPORT> RHOST=<RHOST> RPORT=<RPORT>
+>set dc_ip=<dc_ip>
 ```
 
 ## Set user and password

@@ -262,7 +262,7 @@ netexec ldap <ip> -u <user> -p '<password>' --kerberoasting kerberoastables.txt 
 List of all computers et users with the flag TRUSTED_FOR_DELEGATION
 
 ```bash
-netexec ldap <ip> -u <user> -p '<password>' --trusted-for-delegation
+netexec ldap <dc_ip> -u <user> -p '<password>' --trusted-for-delegation
 ```
 
 ## netexec - winrm-auth
