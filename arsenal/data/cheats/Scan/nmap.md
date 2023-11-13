@@ -7,19 +7,19 @@
 nmap -sn <ip_range>
 ```
 
-## nmap - classic scan
+## nmap - classic scan + save
 ```
-nmap -sC -sV <ip>
+nmap -sC -sV <ip> -oA <output_file>
 ```
 
 ## nmap - read targets from a file
 ```
-nmap -iL <targets_file>
+nmap -sC -sV -iL <targets_file>
 ```
 
-## nmap - classic scan + save
+## nmap - full port + save
 ```
-nmap -sC -sV -oA <output_file> <ip>
+nmap -p- -sC -sV -oA <output_file> <ip>
 ```
 
 ## nmap - quick scan top ports 100
@@ -64,12 +64,3 @@ nmap --max-rate 100 -sC -sV <ip>
 masscan -p 1-65535 <ip> -e <dev> --rate=1000
 ```
 
-## nmap - SMB signing disabled
-```
-nmap -Pn -sS -T4 --open --script smb-security-mode -p445 <ip>
-```
-
-## nmap behind proxy - tcp connect (-sT) - no dns (-n)
-```
-proxychains nmap -n -sT -sV -Pn --open -oA <output_file> -iL <targets_file>
-```

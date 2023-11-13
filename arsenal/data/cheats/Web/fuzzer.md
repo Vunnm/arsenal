@@ -57,7 +57,7 @@ dirb <url> -w /usr/share/wordlists/dirb/common.txt
 #plateform/linux #target/remote #cat/ATTACK/FUZZ
 ## ffuf fuzz keyword in url
 ```
-ffuf -w <wordlist> -u <url>/FUZZ
+ffuf -w <wordlist> -u <url>/FUZZ -ac
 ```
 
 ## ffuf fuzz Host filter response size
