@@ -37,12 +37,13 @@
 ## Set wordlist
 wordlists (nbline): 
 - password
-/usr/share/seclists/Passwords/darkweb2017-top1000.txt (999)
+/usr/share/SecLists/Passwords/darkweb2017-top1000.txt (999)
 /usr/share/wordlists/rockyou.txt (14M)
 
 - Web
-/usr/share/seclists/Discovery/Web-Content/common-and-french.txt (4906)
-/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt (220K)
+~/cheatsheet/SecLists/Discovery/Web-Content/common-and-french.txt (4906)
+~/cheatsheet/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt (220K)
+~/cheatsheet/SecLists/Discovery/Web-Content/common.txt (4726)
 
 ```
 >set wordlist=<wordlist>

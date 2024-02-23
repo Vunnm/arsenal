@@ -149,3 +149,24 @@ sublist3r -d <domain> -v
 ```
 sublist3r -b -d <domain>
 ```
+
+% dns, passif, 53
+
+#plateform/linux  #target/remote  #cat/RECON
+## Find domain by IP - Mnemonic - 10 req/m, 1k/d
+
+```
+curl https://api.mnemonic.no/pdns/v3/<ip> | jq '.data[].query' | sed 's/"//g'
+```
+
+## Find domain by IP - ONYPHE - Free API Key, 100 req/m
+
+```
+curl -s -H 'Authorization: bearer <ONYPHE_API_KEY>' https://www.onyphe.io/api/v2/simple/resolver/<ip> | jq '.results[].hostname' | sed 's/"//g'
+```
+
+## Find domain with IP file - ONYPHE - Free API Key, 100 req/m
+
+```
+for i in `cat <ip.txt>`;do curl -s -H 'Authorization: bearer <ONYPHE_API_KEY>' https://www.onyphe.io/api/v2/simple/resolver/$i | jq '.results[].hostname' | sed 's/"//g' | sort -u ; done 
+```

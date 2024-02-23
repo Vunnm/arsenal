@@ -60,6 +60,11 @@ dirb <url> -w /usr/share/wordlists/dirb/common.txt
 ffuf -w <wordlist> -u <url>/FUZZ -ac
 ```
 
+## ffuf multiple url and store res
+```
+for i in `cat <urls>`; do ffuf -w <wordlist> -u https://$i/FUZZ -ac -o $i.html -of html; done
+```
+
 ## ffuf fuzz Host filter response size
 ```
 ffuf -w <wordlist> -u <url> -H "Host: FUZZ" -fs <response_size>
