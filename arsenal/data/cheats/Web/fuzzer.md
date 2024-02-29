@@ -23,34 +23,6 @@ gobuster dir -u <url> -w <wordlist> -t 30
 gobuster dir -u <url> -w <wordlist> -x json,html,php,txt
 ```
 
-# wfuzz
-
-% fuzzer, fuzz, wfuzz
-#plateform/linux #target/remote #cat/ATTACK/FUZZ
-## wfuzz with number on url ( url : http://site/ )
-```
-wfuzz -z range,1-1000 -u <url>FUZZ
-```
-
-## wfuzz with wordlist on url ( url : http://site/ )
-```
-wfuzz -z file,<file> -u <url>FUZZ
-```
-
-## wfuzz on post parameter
-```
-wfuzz -z file,<file> -X post -u <url> -d 'FUZZ=1'
-```
-
-# Dirb
-
-% fuzzer, fuzz, dirb
-#plateform/linux #target/remote #cat/ATTACK/FUZZ
-## dirb commons
-```
-dirb <url> -w /usr/share/wordlists/dirb/common.txt
-```
-
 # ffuf
 
 % fuzzer, fuzz, ffuf
@@ -63,6 +35,11 @@ ffuf -w <wordlist> -u <url>/FUZZ -ac
 ## ffuf multiple url and store res
 ```
 for i in `cat <urls>`; do ffuf -w <wordlist> -u https://$i/FUZZ -ac -o $i.html -of html; done
+```
+
+## ffuf fuzz url with header
+```
+ffuf -w <wordlist> -u <url>/FUZZ -ac -H '<header>'
 ```
 
 ## ffuf fuzz Host filter response size
@@ -78,15 +55,6 @@ ffuf -w <wordlist> -u <url>?<param>=FUZZ -fs <response_size>
 ## ffuf POST parameter fuzzing and filter response code 401
 ```
 ffuf -w <wordlist> -u <url> -X POST -d "username=admin\&password=FUZZ" -fc 401
-```
-
-# nikto
-
-% fuzzer, fuzz, nikto
-#plateform/linux #target/remote #cat/ATTACK/FUZZ
-## nikto - first vuln scan
-```
-nikto -C all -h <url>
 ```
 
 = wordlist: /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
