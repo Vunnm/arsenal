@@ -511,7 +511,7 @@ nmcli dev show <interface>
 
 ## nslookup AD - domain
 ```
-nslookup -type=SRV _ldap._tcp.dc._msdcs.<domain_name>
+nslookup -type=SRV _ldap._tcp.dc._msdcs.<domain>
 ```
 
 % windows, active directory

