@@ -32,6 +32,12 @@ msfconsole -x "use auxiliary/admin/kerberos/ms14_068_kerberos_checksum"
 msfconsole -x "use scanner/smb/smb_enum_gpp"
 ```
 
+## Export TGT to cache
+#plateform/linux #port/88 #protocol/kerberos
+```
+export KRB5CCNAME=$(pwd)/<user>.ccache
+```
+
 ## powershell - get user SPN
 #plateform/windows #target/remote #port/88 #protocol/kerberos #cat/RECON 
 

@@ -294,3 +294,10 @@ netexec mssql <ip> -u <user> -p '<password>' --local-auth -x <cmd|whoami>
 ```
 
 = ip: 192.168.1.0/24
+
+## netexec - PSO (admin)
+#plateform/linux #target/remote #port/386 #protocol/ldap #cat/RECON
+
+```
+nxc ldap <dc_ip> -u <user> -p '<password>' -M pso
+```
