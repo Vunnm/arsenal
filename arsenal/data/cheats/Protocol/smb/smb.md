@@ -34,5 +34,11 @@ nmap -Pn -sS -T4 --open --script smb-security-mode -p445 <ip>
 ## smb mount folder
 #plateform/linux #target/remote #port/445 #protocol/smb #cat/ATTACK/CONNECT  
 ```
-mount -t cifs //<ip>/C\$ /tmp/mnttarget/ -o username=<user> -o domain=<domain>
+mount -t cifs //<ip>/<share> /tmp/mnttarget/ -o username=<user>,password=<pass>,domain=<domain>
+```
+
+## smb anonymous mount
+#plateform/linux #target/remote #port/445 #protocol/smb #cat/ATTACK/CONNECT  
+```
+mount -t cifs //<ip>/<share> /tmp/mnttarget/ -o guest
 ```
