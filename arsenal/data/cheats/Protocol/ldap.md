@@ -59,7 +59,7 @@ ldapsearch -x -H ldap://<dc_fqdn> -D <domain>\\<user> -w '<password>' -b 'DC=<do
 ## ldapdomaindump
 #cat/ATTACK/CONNECT 
 ```
-ldapdomaindump --no-json --no-grep --authtype SIMPLE -o ldap_dump -r <ip> -u <domain>\\<user> -p '<password>'
+ldapdomaindump -o ldap_dump <ip> -u <domain>\\<user> -p '<password>'
 ```
 
 ## ldapsearch-ad - list all password policies including FGPP

