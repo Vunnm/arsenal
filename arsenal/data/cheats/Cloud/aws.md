@@ -14,6 +14,14 @@ aws configure
 aws configure --profile <profil>
 ```
 
+## Configure AWS cli with temp credentials
+
+```
+export AWS_ACCESS_KEY_ID="<access_key_id>";
+export AWS_SECRET_ACCESS_KEY="<secret_access_key>";
+export AWS_SESSION_TOKEN="<session_token>";
+```
+
 ## Listing IAM access Keys
 
 ```
@@ -67,7 +75,7 @@ aws iam list-attached-group-policies --group-name <group-name>
 ### Listing the names of the inline policies embedded in the specified IAM Group
 
 ```
-aws iam list-group-policies --group-name group name
+aws iam list-group-policies --group-name <group-name>
 ```
 
 ### Listing IAM Roles
@@ -85,7 +93,7 @@ aws iam list-attached-role-policies --role-name  <role-name>
 ### Listing the names of the inline policies embedded in the specified IAM role 
 
 ```
-aws iam list-role-policies --role-name  <role-name>
+aws iam list-role-policies --role-name <role-name>
 ```
 
 ### Listing of IAM Policies
@@ -97,19 +105,19 @@ aws iam list-policies
 ### Retrieving information about the specified managed policy 
 
 ```
-aws iam get-policy --policy-arn policy-arn
+aws iam get-policy --policy-arn <policy-arn>
 ```
 
 ### Listing information about the versions of the specified manages policy 
 
 ```
-aws iam list-policy-versions --policy-arn policy-arn
+aws iam list-policy-versions --policy-arn <policy-arn>
 ```
 
 ### Retrieving information about the specific version of the specified managed policy 
 
 ```
-aws iam get-policy-version --policy-arn policy-arn --version-id version-id
+aws iam get-policy-version --policy-arn <policy-arn> --version-id <version-id>
 ```
 
 ### Retrieving the specified inline policy document that is embedded on the specified IAM user / group / role 
@@ -120,6 +128,32 @@ aws iam get-user-policy --user-name <user-name> --policy-name policy-name
 aws iam get-group-policy --group-name <group-name> --policy-name policy-name
 
 aws iam get-role-policy --role-name  <role-name> --policy-name policy-name
+```
+
+## Bucket S3
+
+### List s3 recursively 
+
+```
+aws s3 ls s3://<bucket_name> --recursive
+```
+
+### List s3 - no authent
+
+```
+aws s3 ls s3://<bucket_name> --no-sign-request
+```
+
+### Get file 
+
+```
+aws s3 cp s3://<bucket_name>/<file> <local_file>
+```
+
+### Put file
+
+```
+aws s3 cp <local_file> s3://<bucket_name>/<file>
 ```
 
 ## SSRF in EC2
@@ -134,4 +168,10 @@ curl http://169.254.169.254/latest/meta-data/iam/security-credentials/
 #plateform/linux #target/remote #protocol/http #port/80 #cat/RECON
 ```
 curl http://169.254.169.254/latest/meta-data/iam/security-credentials/<role_name>
+```
+
+## Assumer un rôle
+
+```
+aws sts assume-role --role-arn <arn> --role-session-name <sess_name>
 ```
