@@ -80,3 +80,15 @@ docker run --rm --name=<container_name|mysql8> -e MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
 # connect to mysql docker container
 docker exec -ti <container_name> mysql
+
+# Use Dive to inspect layer of docker image
+
+```
+sudo dive <image>:<tag>
+```
+
+# Find corresponding layer and dive
+
+```
+sudo docker image inspect <IMAGE ID OR NAME> | jq '.[].GraphDriver.Data.UpperDir + ":" + .[].GraphDriver.Data.LowerDir | split(":") | reverse'
+```
