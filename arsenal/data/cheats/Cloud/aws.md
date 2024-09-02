@@ -170,8 +170,16 @@ curl http://169.254.169.254/latest/meta-data/iam/security-credentials/
 curl http://169.254.169.254/latest/meta-data/iam/security-credentials/<role_name>
 ```
 
-## Assumer un rôle
+## Assume role
 
 ```
 aws sts assume-role --role-arn <arn> --role-session-name <sess_name>
+```
+
+## Enumerate AWS organization
+
+### List organizations
+
+```
+aws organizations describe-organization
 ```
