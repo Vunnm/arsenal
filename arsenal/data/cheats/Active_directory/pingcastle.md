@@ -7,5 +7,5 @@
 https://www.pingcastle.com/documentation/run/
 
 ```PowerShell
-Pingcastle.exe --healthcheck --server <domain> --username <user> --password <password>
+./Pingcastle.exe --healthcheck --server <domain> --user <user> --password <password>
 ```

