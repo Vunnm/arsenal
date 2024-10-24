@@ -301,3 +301,15 @@ netexec mssql <ip> -u <user> -p '<password>' --local-auth -x <cmd|whoami>
 ```
 nxc ldap <dc_ip> -u <user> -p '<password>' -M pso
 ```
+
+## Extract SMBv1:True list from netexec output
+
+```
+cat <nxc_output> | grep "SMBv1:True" | awk '{print "- "$4" ("$2")"}'
+```
+
+## Extract signing:False list from netexec output
+
+```
+cat <nxc_output> | grep "signing:False" | awk '{print "- "$4" ("$2")"}'
+```
