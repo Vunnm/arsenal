@@ -31,7 +31,7 @@ dig ANY <domain_name> @<dns_ip>
 ## dig reverse lookup
 #plateform/linux  #target/remote  #cat/RECON
 ```
-dig -x <ip> @<dns_ip>
+dig -x <ip> @<dns_ip> +short
 ```
 
 ## dig zone transfer

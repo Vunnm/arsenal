@@ -82,3 +82,7 @@ creds_all
 use post/windows/gather/credentials/enum_laps
 ```
 
+## Format "services -o out" cmd to markdown
+```
+awk -F',' 'BEGIN {print "| IP            | Services                 |\n|---------------|--------------------------|"} NR > 1 {gsub(/"/, "", $1); gsub(/"/, "", $2); gsub(/"/, "", $4); ip_ports[$1] = ip_ports[$1] ? ip_ports[$1]","$2" ("$4")" : $2" ("$4")"} END {for (ip in ip_ports) print "| " ip " | " ip_ports[ip] " |"}' <input.csv>
+```
