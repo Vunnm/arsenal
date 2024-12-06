@@ -28,6 +28,12 @@ export AWS_SESSION_TOKEN="<session_token>";
 aws iam list-access-keys
 ```
 
+## Loop command over each region
+
+```
+for region in $(aws ec2 describe-regions --query "Regions[].RegionName" --output text); do echo "Région : $region"; aws <command> --region $region; done
+```
+
 ## Enumerating IAM users
 
 ### Checking credentials for the user
@@ -300,6 +306,12 @@ aws datapipeline put-pipeline-definition --pipeline-id <unique_string> --pipelin
 ```
 
 ## Bucket S3
+
+### cloud_enum - try bf bucket name
+
+```
+./cloud_enum.py -k <mot clé> -k <mot clé> --disable-azure --disable-gcp
+```
 
 ### List s3 recursively 
 

@@ -7,6 +7,12 @@
 systeminfo
 ```
 
+## conhost - start headless process
+
+```
+conhost.exe --headless <exe to launch>
+```
+
 ## get info system limited
 ```
 systeminfo | findstr /B /C:"OS Name" /C:"OS Version"
