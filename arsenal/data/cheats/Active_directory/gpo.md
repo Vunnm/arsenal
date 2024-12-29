@@ -1,3 +1,0 @@
-# Group Policy Object (GPO)
-
-## 
