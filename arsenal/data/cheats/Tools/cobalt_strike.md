@@ -145,3 +145,8 @@ socks 1080 socks5 disableNoAuth <user> <pass> enableLogging
 ```
 rportfwd <local_port> <127.0.0.1> <port_forward>
 ```
+### Change spawnto
+
+```
+spawnto x<64|86> %windir%\sysnative\dllhost.exe
+```

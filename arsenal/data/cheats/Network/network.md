@@ -33,3 +33,9 @@ curl portquiz.net:<port>
 ```
 nc -v portquiz.net <port>
 ```
+
+## tshark - LLMNT, Netbios-NS, mDNS
+
+```
+sudo tshark -Y "llmnr || nbns || mdns" -i <interface>
+```
